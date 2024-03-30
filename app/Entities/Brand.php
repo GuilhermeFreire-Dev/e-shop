@@ -3,14 +3,14 @@
 namespace App\Entities;
 
 class Brand implements EntityInterface
-{
+{    
     public function __construct(
-        public int $id,
         public string $name,
         public float $relevancy,
-        public ?string $createdAt,
-        public ?string $updatedAt,
-    ) {}
+        public ?string $createdAt = null,
+        public ?string $updatedAt = null,
+        public ?int $id = null,
+    ) { }
 
     public static function makeFromArray(array $data): Brand
     {

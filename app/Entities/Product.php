@@ -6,14 +6,14 @@ use Illuminate\Support\Collection;
 class Product implements EntityInterface
 {
     public function __construct(
-        public int $id,
         public string $name,
         public string $description,
         public int $brandId,
         public int $categoryId,
-        public ?string $createdAt,
-        public ?string $updatedAt,
         public Collection $skus = new Collection(),
+        public ?string $createdAt = null,
+        public ?string $updatedAt = null,
+        public ?int $id = null,
     ) {}
 
     public static function makeFromArray(array $data): Product

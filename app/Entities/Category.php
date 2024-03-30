@@ -5,11 +5,11 @@ namespace App\Entities;
 class Category implements EntityInterface
 {
     public function __construct(
-        public int $id,
         public string $name,
-        public int $father,
-        public ?string $createdAt,
-        public ?string $updatedAt,
+        public ?int $father = null,
+        public ?string $createdAt = null,
+        public ?string $updatedAt = null,
+        public ?int $id = null,
     ) {}
 
     public static function makeFromArray(array $data): Category

@@ -6,19 +6,19 @@ use Illuminate\Support\Collection;
 class Sku implements EntityInterface
 {
     public function __construct(
-        public int $id,
         public int $productId,
         public string $name,
         public string $size,
         public string $color,
         public string $hex,
-        public int $tissue,
+        public string $tissue,
         public float $lastPrice,
         public float $currentPrice,
         public int $quantity,
+        public Collection $images = new Collection(),
         public ?string $createdAt,
         public ?string $updatedAt,
-        public Collection $images = new Collection(),
+        public ?int $id,
     ) {}
 
     public function makeFromArray(array $data): Sku
