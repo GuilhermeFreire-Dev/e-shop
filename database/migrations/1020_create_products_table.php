@@ -15,16 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name', 60);
             $table->text('description');
-            $table->integer('brand_id');
-            $table->foreignId('brand_id')->constrained(
-                table: 'brands',
-                indexName: 'product_brand_id',
-            );
-            $table->integer('category_id');
-            $table->foreignId('category_id')->constrained(
-                table: 'categories',
-                indexName: 'product_category_id',
-            );
+            $table->foreignId('brand_id')->references('id')->on('brands');
+            $table->index('brand_id');
+            $table->foreignId('category_id')->references('id')->on('categories');
+            $table->index('category_id');
             $table->timestamps();
         });
     }

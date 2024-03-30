@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('description');
-            $table->integer('sku_id');
-            $table->foreignId('sku_id')->constrained(
-                table: 'skus',
-                indexName: 'images_sku_id'
-            )->cascadeOnDelete();
+            $table->foreignId('sku_id')->references('id')->on('skus')->cascadeOnDelete();
+            $table->index('sku_id');
             $table->string('uri');
             $table->integer('position')->default(0);
             $table->timestamps();

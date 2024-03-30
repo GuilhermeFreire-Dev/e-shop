@@ -13,16 +13,10 @@ return new class extends Migration
     {
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('cart_id');
-            $table->foreignId('cart_id')->constrained(
-                table: 'carts',
-                indexName: 'item_cart_id'
-            )->cascadeOnDelete();
-            $table->integer('sku');
-            $table->foreignId('sku')->constrained(
-                table: 'skus',
-                indexName: 'sku_cart_id'
-            );
+            $table->foreignId('cart_id')->references('id')->on('carts')->cascadeOnDelete();
+            $table->index('cart_id');
+            $table->foreignId('sku_id')->references('id')->on('skus')->cascadeOnDelete();
+            $table->index('sku_id');
             $table->timestamps();
         });
     }

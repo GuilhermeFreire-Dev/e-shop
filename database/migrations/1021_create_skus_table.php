@@ -13,20 +13,18 @@ return new class extends Migration
     {
         Schema::create('skus', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
-            $table->foreignId('product_id')->constrained(
-                table: 'products',
-                indexName: 'skus_product_id'
-            )->cascadeOnDelete();
+            $table->foreignId('product_id')->references('id')->on('products')->cascadeOnDelete();
+            $table->index('product_id');
             $table->string('name', 30);
             $table->string('size', 10);
             $table->string('color', 20);
             $table->string('hex', 7)->default('#000000');
-            $table->integer('tissue', 20);
+            $table->string('tissue', 20);
             $table->double('last_price')->nullable();
             $table->double('current_price')->default(0);
             $table->integer('quantity')->default(0);
             $table->timestamps();
+            $table->unique(['product_id','size']);
         });
     }
 

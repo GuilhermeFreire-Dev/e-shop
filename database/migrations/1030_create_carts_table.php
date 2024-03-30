@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\CartStatusEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +14,11 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
+            $table->enum('status', [
+                CartStatusEnum::ABANDONED->value,
+                CartStatusEnum::FINISHED->value,
+                CartStatusEnum::PENDING->value,
+            ])->default(CartStatusEnum::PENDING->value);
             $table->timestamps();
         });
     }
