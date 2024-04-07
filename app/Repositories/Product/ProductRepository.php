@@ -5,6 +5,7 @@ namespace App\Repositories\Product;
 use App\Entities\Product;
 use \App\Models\Product as Model;
 use App\Repositories\Product\ProductRepositoryInterface;
+use Illuminate\Support\Collection;
 
 class ProductRepository implements ProductRepositoryInterface
 {
@@ -24,16 +25,31 @@ class ProductRepository implements ProductRepositoryInterface
         return $product;
     }
 
-    public function delete(Product $product): bool
+    public function delete(int $id): bool
     {
-        return $this->product->findOrFail($product->id)->delete();
+        return $this->product->findOrFail($id)->delete();
     }
 
-    public function find(int $id): Model
+    public function find(int $id): Product
     {
-        return $this->product
-        ->join('brands', 'product.brand_id', '=', 'brands.id')
-        ->join('categories', 'product.category_id', '=', 'categories.id')
-        ->findOrFail($id);
+        return Product::makeFromArray($this->product->findOrFail($id)->toArray());
+    }
+
+    public function findAll(int $page): Collection
+    {
+        $products = $this->product
+        ->limit(10)
+        ->offset($page)
+        ->get();
+
+        return $products->map(function ($product) {
+            $item = $product->toArray();
+            $item['brand'] = $product->brand()->first();
+            $item['category'] = $product->category()->first();
+            $sku = $product->skus()->first();
+            $item['sku'] = $sku;
+            $item['image'] = $sku->images()->where('position', 1)->first();
+            return (object) $item;
+        });
     }
 }

@@ -10,8 +10,6 @@ class Image implements EntityInterface
         public int $skuId,
         public string $uri,
         public int $position,
-        public ?string $createdAt,
-        public ?string $updatedAt,
     ) {}
 
     public static function makeFromArray(array $data): Image
@@ -22,8 +20,6 @@ class Image implements EntityInterface
             skuId: $data['sku_id'],
             uri: $data['uri'],
             position: $data['position'],
-            createdAt: $data['created_at'],
-            updatedAt: $data['updated_at'],
         );
     }
 
@@ -35,8 +31,6 @@ class Image implements EntityInterface
             'sku_id'=> $this->skuId,
             'uri'=> $this->uri,
             'position'=> $this->position,
-            'created_at'=> $this->createdAt,
-            'updated_at'=> $this->updatedAt,
         ];
     }
 }

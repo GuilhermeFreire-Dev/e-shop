@@ -17,7 +17,7 @@ class CartItem implements EntityInterface
         return new self(
             id: $data['id'],
             cartId: $data['cart_id'],
-            sku: $data['sku'],
+            sku: $data['sku_id'],
             createdAt: $data['created_at'],
             updatedAt: $data['updated_at'],
         );
@@ -28,7 +28,7 @@ class CartItem implements EntityInterface
         return [
             'id'=> $this->id,
             'cart_id'=> $this->cartId,
-            'sku'=> $this->sku,
+            'sku_id'=> $this->sku,
             'created_at'=> $this->createdAt,
             'updated_at'=> $this->updatedAt,
         ];

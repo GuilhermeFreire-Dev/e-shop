@@ -11,8 +11,6 @@ class Product implements EntityInterface
         public int $brandId,
         public int $categoryId,
         public Collection $skus = new Collection(),
-        public ?string $createdAt = null,
-        public ?string $updatedAt = null,
         public ?int $id = null,
     ) {}
 
@@ -24,8 +22,6 @@ class Product implements EntityInterface
             description: $data['description'],
             brandId: $data['brand_id'],
             categoryId: $data['category_id'],
-            createdAt: $data['created_at'],
-            updatedAt: $data['updated_at'],
         );
     }
 
@@ -37,8 +33,6 @@ class Product implements EntityInterface
             'description'=> $this->description,
             'brand_id'=> $this->brandId,
             'category_id'=> $this->categoryId,
-            'created_at'=> $this->createdAt,
-            'updated_at'=> $this->updatedAt,
         ];
     }
 }

@@ -13,4 +13,9 @@ class Brand extends Model
         'name',
         'relevancy',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

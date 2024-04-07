@@ -13,4 +13,9 @@ class Category extends Model
         'name',
         'father',
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }
